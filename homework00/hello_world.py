@@ -1,4 +1,5 @@
+message=1
 def text():
-    message=1
+    a=message+=1
     return message
 text()
