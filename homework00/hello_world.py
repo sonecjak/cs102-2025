@@ -1,5 +1,4 @@
-message=1
 def text():
-    a=message+=1
+    message='бабаба'
     return message
 text()
