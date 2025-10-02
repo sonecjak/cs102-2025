@@ -1,3 +1,4 @@
+import sys
 def text():
     """
     Function lalalalalalallaalalal
