@@ -1,5 +1,5 @@
 """Function lalalalalalallaalalal"""
 def text():
-    message = 1
+    message = str("ddddddd")
     return message
 text()
