@@ -1,6 +1,6 @@
 """Function lalalalalalallaalalal"""
 def text():
     """efhioy8o;wreugirgeu8r"""
-    message ="ddddddd"
+    message ="message"
     return message
 text()
