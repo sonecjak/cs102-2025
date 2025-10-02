@@ -1,6 +1,6 @@
 def text():
     """
-    функция
+    Function lalalalalalallaalalalallalalalalaalalallalalalaa
     """
     message='бабаба'
     return message
