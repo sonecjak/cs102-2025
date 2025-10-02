@@ -1,5 +1,7 @@
 def text():
-    #функция
+    """
+    функция
+    """
     message='бабаба'
     return message
 text()
