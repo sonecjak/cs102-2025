@@ -1,7 +1,9 @@
 def text():
     """
-    Function lalalalalalallaalalalallalalalalaalalallalalalaa
+    Function lalalalalalallaalalal
     """
-    message='бабаба'
+    message: str = 'бабаба'
     return message
+
+
 text()
