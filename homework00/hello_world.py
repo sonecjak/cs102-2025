@@ -2,6 +2,6 @@
  Function lalalalalalallaalalal
 """
 def text():
-    message = 'бабаба'
+    message = 1
     return message
 text()
