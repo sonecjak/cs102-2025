@@ -1,5 +1,7 @@
-from mypy.fscache import copy_os_error
+"""
+Caesar Cipher Implementation
 
+"""
 
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
