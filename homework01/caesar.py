@@ -51,10 +51,10 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     for char in ciphertext:
         if char.isalpha():
             if char.isupper():
-                shifted_char = chr(ord('A') + ((ord(char) - ord("A") - shift) % 26))
+                shifted_char = chr(ord("A") + ((ord(char) - ord("A") - shift) % 26))
                 plaintext += shifted_char
             else:
-                shifted_char = chr(ord('a') + ((ord(char) - ord('a') - shift) % 26))
+                shifted_char = chr(ord("a") + ((ord(char) - ord("a") - shift) % 26))
                 plaintext += shifted_char
         else:
             plaintext += char
