@@ -3,6 +3,7 @@ Caesar Cipher Implementation
 
 """
 
+
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     Encrypts plaintext using a Caesar cipher.
@@ -29,6 +30,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
             ciphertext += char
 
     return ciphertext
+
 
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
