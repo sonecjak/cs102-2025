@@ -17,17 +17,18 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     ''
     """
     ciphertext = ""
-    amount_of_letters=26 #кол-во букв в английском алфавите
+    amount_of_letters = 26  # кол-во букв в английском алфавите
     for char in plaintext:
         if char.isalpha():
-
             if char.isupper():
-                basechar="A"
+                basechar = "A"
             else:
-                basechar="a"
-            shifted_char = chr(ord(basechar) + ((ord(char) - ord(basechar) + shift) % amount_of_letters))
+                basechar = "a"
+            shifted_char = chr(
+                ord(basechar)
+                + ((ord(char) - ord(basechar) + shift) % amount_of_letters)
+            )
             ciphertext += shifted_char
-
 
         else:
             ciphertext += char
@@ -48,14 +49,17 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
-    amount_of_letters=26 #кол-во букв в английском алфавите
+    amount_of_letters = 26  # кол-во букв в английском алфавите
     for char in ciphertext:
         if char.isalpha():
             if char.isupper():
                 basechar = "A"
             else:
                 basechar = "a"
-            shifted_char = chr(ord(basechar) + ((ord(char) - ord(basechar) - shift) % amount_of_letters))
+            shifted_char = chr(
+                ord(basechar)
+                + ((ord(char) - ord(basechar) - shift) % amount_of_letters)
+            )
             plaintext += shifted_char
 
         else:
