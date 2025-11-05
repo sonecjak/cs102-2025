@@ -44,24 +44,30 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     inverse of two numbers.
     >>> multiplicative_inverse(7, 40)
     23
-
     """
-    # b * x + a * y = НОД(b, a)  берем по модулю a
-    # (b * x) % a = 1
-    # x = d
+    old_remainder = phi
+    current_remainder = e
+    old_coef = 0
+    current_coef = 1
 
-    a, b = phi, e
-    x0, x1 = 0, 1
+    while current_remainder != 0:
+        quotient = old_remainder // current_remainder
+        temp_remainder = current_remainder
+        temp_coef = current_coef
 
-    while b != 0:
-        q = a // b
-        a, b = b, a % b
-        x0, x1 = x1, x0 - q * x1
+        current_remainder = old_remainder - quotient * current_remainder
+        old_remainder = temp_remainder
 
-    if a != 1:
+        current_coef = old_coef - quotient * current_coef
+        old_coef = temp_coef
+
+    if old_remainder != 1:
         raise ValueError(f"Числа {e} и {phi} не взаимно простые")
 
-    return x0 % phi
+    if old_coef < 0:
+        old_coef += phi
+
+    return old_coef
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
