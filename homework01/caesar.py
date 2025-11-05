@@ -18,7 +18,10 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
                 basechar = "A"
             else:
                 basechar = "a"
-            shifted_char = chr(ord(basechar) + ((ord(char) - ord(basechar) + shift) % amount_of_letters))
+            shifted_char = chr(
+                ord(basechar)
+                + ((ord(char) - ord(basechar) + shift) % amount_of_letters)
+            )
             ciphertext += shifted_char
 
         else:

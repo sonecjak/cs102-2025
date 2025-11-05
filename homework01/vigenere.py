@@ -16,7 +16,9 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
         if char.isalpha():
             base = "A" if char.isupper() else "a"
             shift = ord(keyword[keyidx % len(keyword)]) - ord(base)
-            ciphertext += chr(ord(base) + ((ord(char) - ord(base) + shift) % amount_of_letters))
+            ciphertext += chr(
+                ord(base) + ((ord(char) - ord(base) + shift) % amount_of_letters)
+            )
             keyidx += 1
         else:
             ciphertext += char
@@ -41,7 +43,9 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
         if char.isalpha():
             base = "A" if char.isupper() else "a"
             shift = ord(keyword[keyidx % len(keyword)]) - ord(base)
-            plaintext += chr(ord(base) + ((ord(char) - ord(base) - shift) % amount_of_letters))
+            plaintext += chr(
+                ord(base) + ((ord(char) - ord(base) - shift) % amount_of_letters)
+            )
             keyidx += 1
         else:
             plaintext += char
