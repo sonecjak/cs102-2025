@@ -40,5 +40,17 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     ''
     """
     plaintext = ""
+    amount_of_letters = 26  # кол-во букв в английском алфавите
+    for char in ciphertext:
+        if char.isalpha():
+            if char.isupper():
+                basechar = "A"
+            else:
+                basechar = "a"
+            shifted_char = chr(ord(basechar)+ ((ord(char) - ord(basechar) - shift) % amount_of_letters))
+            plaintext += shifted_char
+
+        else:
+            plaintext += char
 
     return plaintext
