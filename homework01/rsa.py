@@ -17,9 +17,13 @@ def is_prime(n: int) -> bool:
     >>> is_prime(8)
     False
     """
-    if n <= 2:
+    if n < 2:
+        return False
+    if n == 2:
         return True
-    for i in range(2, int(n**0.5) + 1):
+    if n % 2 == 0:
+        return False
+    for i in range(3, int(n**0.5) + 1, 2):
         if n % i == 0:
             return False
     return True
@@ -70,7 +74,9 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     return old_coef
 
 
-def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
+def generate_keypair(
+    p: int, q: int
+) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
         raise ValueError("Both numbers must be prime.")
     if p == q:
