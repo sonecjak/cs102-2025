@@ -218,39 +218,32 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
 
     N = max(0, min(N, total_cells))
 
-    full_solution = [
-        ["5", "3", "4", "6", "7", "8", "9", "1", "2"],
-        ["6", "7", "2", "1", "9", "5", "3", "4", "8"],
-        ["1", "9", "8", "3", "4", "2", "5", "6", "7"],
-        ["8", "5", "9", "7", "6", "1", "4", "2", "3"],
-        ["4", "2", "6", "8", "5", "3", "7", "9", "1"],
-        ["7", "1", "3", "9", "2", "4", "8", "5", "6"],
-        ["9", "6", "1", "5", "3", "7", "2", "8", "4"],
-        ["2", "8", "7", "4", "1", "9", "6", "3", "5"],
-        ["3", "4", "5", "2", "8", "6", "1", "7", "9"],
-    ]
+    empty_grid = [["." for _ in range(size)] for _ in range(size)]
+
+    full_solution = solve(empty_grid)
+
+    if full_solution is None:
+        full_solution = [
+            ["5", "3", "4", "6", "7", "8", "9", "1", "2"],
+            ["6", "7", "2", "1", "9", "5", "3", "4", "8"],
+            ["1", "9", "8", "3", "4", "2", "5", "6", "7"],
+            ["8", "5", "9", "7", "6", "1", "4", "2", "3"],
+            ["4", "2", "6", "8", "5", "3", "7", "9", "1"],
+            ["7", "1", "3", "9", "2", "4", "8", "5", "6"],
+            ["9", "6", "1", "5", "3", "7", "2", "8", "4"],
+            ["2", "8", "7", "4", "1", "9", "6", "3", "5"],
+            ["3", "4", "5", "2", "8", "6", "1", "7", "9"],
+        ]
 
     if N == total_cells:
-        result = []
-        for row in full_solution:
-            result.append(row.copy())
-        return result
+        return [row.copy() for row in full_solution]
 
-    grid = []
-    for i in range(size):
-        row = []
-        for j in range(size):
-            row.append(".")
-        grid.append(row)
+    grid = [["." for _ in range(size)] for _ in range(size)]
 
     if N == 0:
         return grid
 
-    positions = []
-    for i in range(size):
-        for j in range(size):
-            positions.append((i, j))
-
+    positions = [(i, j) for i in range(size) for j in range(size)]
     random.shuffle(positions)
 
     for i in range(N):
