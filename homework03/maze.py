@@ -1,8 +1,7 @@
 from copy import deepcopy
 from random import choice, randint
 from typing import List, Optional, Tuple, Union
-import tkinter as tk
-from tkinter import messagebox
+
 
 import pandas as pd
 
