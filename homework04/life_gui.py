@@ -1,4 +1,6 @@
+import random
 import pygame
+from pathlib import Path
 from life import GameOfLife
 from pygame.locals import *
 from ui import UI
@@ -24,13 +26,17 @@ class GUI(UI):
         for y in range(0, self.height, self.cell_size):
             pygame.draw.line(self.screen, pygame.Color("black"), (0, y), (self.width, y))
 
-    def draw_grid(self) -> None:
+    def draw_grid(self, color: pygame.Color = None) -> None:
         surface = self.screen
-        for row_number, row in enumerate(self.grid):
+        for row_number, row in enumerate(self.life.grid):  #
             for col_number, cell in enumerate(row):
-                color = "green" if cell == 1 else "white"
-                rect = (row_number * self.cell_height, col_number * self.cell_width, self.cell_height, self.cell_width)
-                pygame.draw.rect(surface, color, rect)
+                if color:
+                    cell_color = color if cell == 1 else pygame.Color("white")
+                else:
+                    cell_color = pygame.Color("green") if cell == 1 else pygame.Color("white")
+                rect = (col_number * self.cell_size, row_number * self.cell_size, self.cell_size,
+                        self.cell_size)
+                pygame.draw.rect(surface, cell_color, rect)
 
     def run(self) -> None:
         """Starts the Game"""
@@ -58,7 +64,7 @@ class GUI(UI):
                         x, y = event.pos
                         row = y // self.cell_size
                         col = x // self.cell_size
-                        self.life.curr_generation[row][col] = 1 - self.grid[row][col]
+                        self.life.curr_generation[row][col] = 1 - self.life.grid[row][col]
 
             self.screen.fill(pygame.Color("white"))
 
