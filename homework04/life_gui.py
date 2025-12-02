@@ -1,6 +1,7 @@
 import random
-import pygame
 from pathlib import Path
+
+import pygame
 from life import GameOfLife
 from pygame.locals import *
 from ui import UI
