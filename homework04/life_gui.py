@@ -35,8 +35,7 @@ class GUI(UI):
                     cell_color = color if cell == 1 else pygame.Color("white")
                 else:
                     cell_color = pygame.Color("green") if cell == 1 else pygame.Color("white")
-                rect = (col_number * self.cell_size, row_number * self.cell_size, self.cell_size,
-                        self.cell_size)
+                rect = (col_number * self.cell_size, row_number * self.cell_size, self.cell_size, self.cell_size)
                 pygame.draw.rect(surface, cell_color, rect)
 
     def run(self) -> None:
