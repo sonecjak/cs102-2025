@@ -26,7 +26,7 @@ class GUI(UI):
 
     def draw_grid(self) -> None:
         surface = self.screen
-        for row_number, row in enumerate(self.life.curr_generation):
+        for row_number, row in enumerate(self.grid):
             for col_number, cell in enumerate(row):
                 color = "green" if cell == 1 else "white"
                 rect = (row_number * self.cell_height, col_number * self.cell_width, self.cell_height, self.cell_width)
@@ -58,7 +58,7 @@ class GUI(UI):
                         x, y = event.pos
                         row = y // self.cell_size
                         col = x // self.cell_size
-                        self.life.curr_generation[row][col] = 1 - self.life.curr_generation[row][col]
+                        self.life.curr_generation[row][col] = 1 - self.grid[row][col]
 
             self.screen.fill(pygame.Color("white"))
 

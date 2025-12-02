@@ -84,7 +84,7 @@ class GameOfLife:
         """
         Отрисовка списка клеток с закрашиванием их в соответствующе цвета.
         """
-        for i, row in enumerate(self.curr_generation):
+        for i, row in enumerate(self.grid):
             for j, cell in enumerate(row):
                 color = pygame.Color("green") if cell else pygame.Color("white")
                 rect = pygame.Rect(j * self.cell_size, i * self.cell_size, self.cell_size, self.cell_size)
