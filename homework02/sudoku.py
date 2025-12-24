@@ -38,9 +38,7 @@ def group(values: tp.List[T], n: int) -> tp.List[tp.List[T]]:
     >>> group([1,2,3,4,5,6,7,8,9], 3)
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
-    result = []
-    for i in range(0, len(values), n):
-        result.append(values[i : i + n])
+    result = [values[i : i + n] for i in range(0, len(values), n)]
     return result
 
 
@@ -65,9 +63,7 @@ def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    result = []
-    for i in range(len(grid)):
-        result.append(grid[i][pos[1]])
+    result = [grid[i][pos[1]] for i, val in enumerate(grid)]
     return result
 
 
@@ -106,10 +102,10 @@ def find_empty_positions(
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if grid[i][j] == ".":
-                return (i, j)
+    for i, row in enumerate(grid):
+        for j, val in enumerate(row):
+            if val == ".":
+                return i, j
     return None
 
 
@@ -124,11 +120,8 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     True
     """
     n = len(grid)
-    all_values = set(str(i) for i in range(1, n + 1))
-    used_values = set()
-    used_values.update(get_row(grid, pos))
-    used_values.update(get_col(grid, pos))
-    used_values.update(get_block(grid, pos))
+    all_values = {str(i) for i in range(1, n + 1)}
+    used_values = set(get_row(grid, pos)) | set(get_col(grid, pos)) | set(get_block(grid, pos))
     used_values.discard(".")
     return all_values - used_values
 
@@ -213,44 +206,14 @@ def generate_sudoku(N: int) -> tp.List[tp.List[str]]:
     True
     """
 
-    size = 9
-    total_cells = size * size
-
-    N = max(0, min(N, total_cells))
-
-    empty_grid = [["." for _ in range(size)] for _ in range(size)]
-
-    full_solution = solve(empty_grid)
-
-    if full_solution is None:
-        full_solution = [
-            ["5", "3", "4", "6", "7", "8", "9", "1", "2"],
-            ["6", "7", "2", "1", "9", "5", "3", "4", "8"],
-            ["1", "9", "8", "3", "4", "2", "5", "6", "7"],
-            ["8", "5", "9", "7", "6", "1", "4", "2", "3"],
-            ["4", "2", "6", "8", "5", "3", "7", "9", "1"],
-            ["7", "1", "3", "9", "2", "4", "8", "5", "6"],
-            ["9", "6", "1", "5", "3", "7", "2", "8", "4"],
-            ["2", "8", "7", "4", "1", "9", "6", "3", "5"],
-            ["3", "4", "5", "2", "8", "6", "1", "7", "9"],
-        ]
-
-    if N == total_cells:
-        return [row.copy() for row in full_solution]
-
-    grid = [["." for _ in range(size)] for _ in range(size)]
-
-    if N == 0:
-        return grid
-
-    positions = [(i, j) for i in range(size) for j in range(size)]
+    generated_sudoku = [["." for _ in range(9)] for _ in range(9)]
+    solve(generated_sudoku)
+    positions = [(x, y) for x in range(9) for y in range(9)]
     random.shuffle(positions)
-
-    for i in range(N):
-        row, col = positions[i]
-        grid[row][col] = full_solution[row][col]
-
-    return grid
+    for i in range(81 - N):  # 81 - общее количество клеток в судоку
+        x, y = positions[i]
+        generated_sudoku[x][y] = "."
+    return generated_sudoku
 
 
 if __name__ == "__main__":
