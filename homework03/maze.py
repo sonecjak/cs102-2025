@@ -114,7 +114,10 @@ def shortest_path(
     number_rows = len(grid)
     number_cols = len(grid[0])
     x, y = exit_coord
-    k = int(grid[x][y])
+    try:
+        k = int(grid[x][y])
+    except (ValueError, TypeError):
+        return None
     path = [(x, y)]
     while grid[x][y] != 1:
         k -= 1
